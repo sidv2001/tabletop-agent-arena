@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/sidv2001/tabletop-agent-arena/blob/main/schemas/action-v1.json",
+  "title": "Tabletop Agent Arena placement action v1",
+  "type": "object",
+  "required": ["schema", "type", "cell"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "taa.action.v1"},
+    "type": {"const": "place"},
+    "cell": {
+      "type": "string",
+      "description": "An uppercase row letter and one-based column; the engine also checks board bounds and occupancy.",
+      "pattern": "^[A-E][1-5]$"
+    }
+  }
+}
