@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/sidv2001/tabletop-agent-arena/blob/main/schemas/observation-v1.json",
+  "title": "Tabletop Agent Arena player observation v1",
+  "type": "object",
+  "required": ["schema", "game", "ply", "you", "board", "goal", "legal"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "taa.observation.v1"},
+    "game": {"enum": ["tic-tac-toe@1", "edgepaths-5@1"]},
+    "ply": {"type": "integer", "minimum": 0, "maximum": 25},
+    "you": {"enum": ["X", "O"]},
+    "board": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^[.XO]+$"},
+      "minItems": 3,
+      "maxItems": 5
+    },
+    "goal": {"type": "string"},
+    "legal": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^[A-E][1-5]$"},
+      "uniqueItems": true
+    }
+  }
+}

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Edgepaths-5 | An illustrative decision</title>
+  <style>
+    :root {
+      color: #192c35;
+      background: #f3efe6;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    main { max-width: 70rem; margin: auto; padding: clamp(1.25rem, 4vw, 3rem); }
+    h1, h2 { font-family: Georgia, "Times New Roman", serif; line-height: 1.12; }
+    h1 { font-size: clamp(2.25rem, 6vw, 4.5rem); margin: .5rem 0 1rem; max-width: 13ch; }
+    h2 { font-size: 1.5rem; margin: 0 0 .7rem; }
+    p { margin: .5rem 0 1rem; }
+    .eyebrow { color: #315462; font-weight: 750; letter-spacing: .15em; text-transform: uppercase; font-size: .75rem; }
+    .intro { max-width: 42rem; font-size: 1.125rem; }
+    .layout { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(17rem, .75fr); gap: 1.4rem; margin-top: 2rem; }
+    .board-card, .notes, .text-board { border: 1px solid #9dada8; border-radius: 1.1rem; }
+    .board-card { background: #fffaf0; padding: clamp(1rem, 3vw, 2rem); box-shadow: 0 .7rem 2.5rem #142b3117; }
+    .board-top { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+    .turn { padding: .3rem .8rem; border: 1px solid #315462; border-radius: 2rem; font-size: .9rem; font-weight: 700; }
+    figure { margin: 1.2rem auto .25rem; max-width: 29rem; }
+    svg { display: block; width: 100%; height: auto; }
+    figcaption { color: #315462; font-size: .88rem; text-align: center; }
+    .notes { background: #1b3640; color: #f9f4e7; padding: clamp(1.25rem, 3vw, 2rem); }
+    .notes .eyebrow { color: #f4c58b; }
+    .path { border-top: 1px solid #77939a; padding-top: 1rem; margin-top: 1.2rem; }
+    .choice { display: grid; grid-template-columns: 2.7rem 1fr; gap: .8rem; padding: .65rem 0; }
+    .choice strong { color: #f4c58b; }
+    .caption { color: #d9e4df; font-size: .9rem; }
+    .details { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem; margin-top: 1.4rem; }
+    .text-board { background: #fffaf0; padding: 1.4rem; }
+    pre { font: 1rem/1.6 ui-monospace, SFMono-Regular, Consolas, monospace; overflow-x: auto; margin: .5rem 0; }
+    ol { padding-left: 1.35rem; margin: .5rem 0; }
+    li { padding: .1rem 0; }
+    a { color: #144e67; font-weight: 700; text-underline-offset: .2em; }
+    a:focus-visible { outline: 3px solid #ba6924; outline-offset: 4px; border-radius: 2px; }
+    .footnote { color: #315462; margin-top: 1.4rem; }
+    @media (max-width: 760px) {
+      .layout, .details { grid-template-columns: 1fr; }
+      h1 { max-width: none; }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      a { transition: color .15s ease; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">Tabletop Agent Arena / Decision study 01</p>
+      <h1>Pause at the fifth move.</h1>
+      <p class="intro">Five scripted placements set up an Edgepaths-5 choice.
+        X is building west to east; O is connecting north to south.
+        This is an illustration, not an agent match or a score.</p>
+    </header>
+
+    <div class="layout">
+      <section class="board-card" aria-labelledby="board-heading">
+        <div class="board-top">
+          <h2 id="board-heading">The position</h2>
+          <span class="turn">Ply 5 &middot; O to move</span>
+        </div>
+        <figure>
+          <svg viewBox="0 0 410 420" role="img" aria-labelledby="svg-title svg-desc">
+            <title id="svg-title">Edgepaths-5 after five scripted moves</title>
+            <desc id="svg-desc">Five by five grid. X occupies A1, A2, A3.
+              O occupies B3, C3. O moves next. A4 and D3 are empty and legal.</desc>
+            <rect x="70" y="80" width="280" height="280" rx="12" fill="#f8ecd2" stroke="#375864" stroke-width="3"/>
+            <path d="M126 80v280 M182 80v280 M238 80v280 M294 80v280 M70 136h280 M70 192h280 M70 248h280 M70 304h280"
+                  fill="none" stroke="#859b99" stroke-width="1.5"/>
+            <g fill="#203c49" font-size="18" font-weight="700" text-anchor="middle" font-family="sans-serif">
+              <text x="98" y="65">1</text><text x="154" y="65">2</text>
+              <text x="210" y="65">3</text><text x="266" y="65">4</text>
+              <text x="322" y="65">5</text>
+              <text x="49" y="115">A</text><text x="49" y="171">B</text>
+              <text x="49" y="227">C</text><text x="49" y="283">D</text>
+              <text x="49" y="339">E</text>
+            </g>
+            <g fill="#8b452d">
+              <circle cx="98" cy="108" r="21"/><circle cx="154" cy="108" r="21"/>
+              <circle cx="210" cy="108" r="21"/>
+            </g>
+            <g fill="#145c70">
+              <circle cx="210" cy="164" r="21"/><circle cx="210" cy="220" r="21"/>
+            </g>
+            <g fill="#fff" font-family="sans-serif" font-size="23" font-weight="800"
+               text-anchor="middle" dominant-baseline="central">
+              <text x="98" y="108">X</text><text x="154" y="108">X</text>
+              <text x="210" y="108">X</text><text x="210" y="164">O</text>
+              <text x="210" y="220">O</text>
+            </g>
+          </svg>
+          <figcaption>Letters, not color alone, identify both players.
+            The equivalent text board follows below.</figcaption>
+        </figure>
+      </section>
+
+      <aside class="notes" aria-labelledby="choice-heading">
+        <p class="eyebrow">Illustrative fork</p>
+        <h2 id="choice-heading">What would O protect?</h2>
+        <p>Two legal moves point in different directions. Neither is a
+          recorded agent recommendation.</p>
+        <div class="path">
+          <div class="choice"><strong>A4</strong><span>Occupy a square on X's top-row route.</span></div>
+          <div class="choice"><strong>D3</strong><span>Extend O's column toward the south edge.</span></div>
+        </div>
+        <p class="caption">A future human annotation could save one of these
+          branches separately from the original replay.</p>
+      </aside>
+    </div>
+
+    <div class="details">
+      <section class="text-board" aria-labelledby="text-heading">
+        <h2 id="text-heading">The same board in text</h2>
+        <pre id="board-ascii">    1 2 3 4 5
+A   X X X . .
+B   . . O . .
+C   . . O . .
+D   . . . . .
+E   . . . . .</pre>
+        <p>X needs west-east; O needs north-south. Only orthogonal neighbors connect.</p>
+      </section>
+      <section class="text-board" aria-labelledby="moves-heading">
+        <h2 id="moves-heading">Scripted move sequence</h2>
+        <ol>
+          <li>X places A1.</li>
+          <li>O places B3.</li>
+          <li>X places A2.</li>
+          <li>O places C3.</li>
+          <li>X places A3. O moves next.</li>
+        </ol>
+      </section>
+    </div>
+    <p class="footnote">Read the <a href="../README.md">project proposal and local replay instructions</a>.</p>
+  </main>
+</body>
+</html>
